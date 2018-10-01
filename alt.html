@@ -8,14 +8,36 @@
 
   <title>Welcome to Kendo UI</title>
   <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
-  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.blueopal.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
   <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
   <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
 
 </head>
 
 <body>
+  <input id="fruits" />
+  <input id="fruits1" />
+  <input id="fruits2" data-role="autocomplete" data-source='["Apple", "Banana", "chikoo"]' />
 
+  <div id="container" style="background-color:red"></div>
+
+  <script id="tpl1" type="text/x-kendo-template">
+    <input id="fruits3" data-role="autocomplete" data-source='["Apple", "Banana", "chikoo"]' />
+  </script>
+
+
+  <script>
+    var fruits = ["Apple", "Banana", "chikoo"]
+    var ref1 = $("#fruits").kendoAutoComplete(fruits).data("kendoAutoComplete")
+    console.log(ref1);
+    var fruitsWidget = new kendo.ui.AutoComplete(document.getElementById("fruits1"), fruits)
+    console.log(fruitsWidget);
+    kendo.init(document.body);
+
+    var index = new kendo.View('tpl1')
+    index.render('#container')
+
+  </script>
 </body>
 
 </html>

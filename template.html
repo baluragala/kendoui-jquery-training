@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+
+</head>
+
+<body>
+  <div id="container0"></div>
+  <div id="container1"></div>
+  <div id="container2"></div>
+
+  <script id="expressions" type="text/x-kendo-template">
+
+    <ul>
+      #  for(var i= 0 ; i <= fruits.length; i++  )  { #
+        <li>#= fruits[i] # </li>
+      # } #
+    </ul>
+
+  </script>
+
+  <script>
+    var template1 = kendo.template("<h1>Hello #= message #</h1>")
+    //console.log(template);
+    var result = template1({ message: 'Kendo UI' })
+    console.log(result);
+    $("#container0").html(result);
+
+    var template2 = kendo.template("<h1>Date Time : #= dateTime # </h1>")
+    setInterval(function () {
+      var output = template2({ dateTime: '<i>' + new Date().toISOString() + '</i>' })
+      $("#container1").html(output);
+    }, 1000)
+
+    var template3 = kendo.template($("#expressions").html())
+    var fruits = ["Apple", "Banana", "Chikoo"]
+    var result3 = template3(fruits);
+    $("#container2").html(result3);
+  </script>
+</body>
+
+</html>

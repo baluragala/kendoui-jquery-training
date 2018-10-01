@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+
+</head>
+
+<body>
+  <input id="autoComplete" />
+  <input id="autoCompleteRemote" />
+  <input id="autoCompleteRemote1" />
+
+  <script id="row" type="text/x-kendo-template">
+    Contact Name: #= data.ContactName#, Customer ID: #= data.CustomerID#
+  </script>
+
+  <script>
+    var data = [{ name: "Item1" }, { name: "Item2" }, { name: "Item3" }];
+    $("#autoComplete").kendoAutoComplete({
+      dataSource: data,
+      dataTextField: "name",
+      change: function (e) {
+        console.log(this.value());
+      }
+    })
+
+    var autoComplete = $("#autoComplete").data("kendoAutoComplete")
+    console.log(autoComplete.dataSource);
+    autoComplete.dataSource.read();
+    autoComplete.dataSource.add({ name: "Item4" });
+    autoComplete.search("I")
+
+    var data2 = [{ name: "Apples" }, { name: "Oranges" }, { name: "Peaches" }];
+
+    autoComplete.setDataSource(new kendo.data.DataSource({ data: data2 }))
+
+
+    var remoteDS = new kendo.data.DataSource({
+      type: 'odata',
+      transport: {
+        read: 'https://demos.telerik.com/kendo-ui/service/Northwind.svc/Customers'
+      }
+    })
+
+
+    $("#autoCompleteRemote").kendoAutoComplete({
+      dataSource: remoteDS,
+      autoWidth: true,
+      template: $("#row").html(),
+      dataTextField: "ContactName"
+    })
+
+    var remoteDs1 = new kendo.data.DataSource({
+      transport: {
+        read: {
+          url: "https://api.github.com/users",
+          data: {
+            page: 2
+          }
+        }
+      }
+    })
+
+    $("#autoCompleteRemote1").kendoAutoComplete({
+      dataSource: remoteDs1,
+      dataTextField: "login",
+    })
+
+  </script>
+</body>
+
+</html>
