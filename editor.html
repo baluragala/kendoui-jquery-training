@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+
+  <textarea id="editor" rows="10" cols="30"></textarea>
+
+  <div id="editor1" rows="10" cols="30">JavaScript (/ˈdʒɑːvəˌskrɪpt/), often abbreviated as JS, is a high-level,
+    interpreted programming language. It is a language which is also characterized as dynamic, weakly typed,
+    prototype-based and multi-paradigm.</div>
+  <script>
+    $(document).ready(function () {
+      $("#editor").kendoEditor({
+        tools: [
+          "bold",
+          "italic",
+          "underline",
+          "strikethrough",
+          "justifyLeft",
+          "justifyCenter",
+          "justifyRight",
+          "justifyFull",
+          "insertUnorderedList",
+          "insertOrderedList",
+          "indent",
+          "outdent",
+          "createLink",
+          "unlink",
+          "insertImage",
+          "insertFile",
+          "subscript",
+          "superscript",
+          "tableWizard",
+          "createTable",
+          "addRowAbove",
+          "addRowBelow",
+          "addColumnLeft",
+          "addColumnRight",
+          "deleteRow",
+          "deleteColumn",
+          "viewHtml",
+          "formatting",
+          "cleanFormatting",
+          "fontName",
+          "fontSize",
+          "foreColor",
+          "backColor",
+          "print"
+        ]
+      });
+
+      $("#editor1").kendoEditor();
+    })
+  </script>
+</body>
+
+</html>

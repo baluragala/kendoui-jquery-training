@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <ul id="menu">
+    <!-- <li>Normal Item
+      <ul>
+        <li><span class="k-sprite icon-class"></span>Item with a Sprite</li>
+        <li><img src="Icons/contacts.gif" />Item with an Icon</li>
+      </ul>
+    </li>
+    <li><a href="http://www.google.com">Navigation Item</a></li>
+    <li class="k-state-active">Active Item</li>
+    <li>Template Item
+      <div class="k-group k-content">
+        Test button - <a class="k-button">Button</a>
+      </div>
+    </li> -->
+  </ul>
+
+  <script>
+    $(document).ready(function () {
+      //$("#menu").kendoMenu();
+
+
+      $("#menu").kendoMenu({
+        dataSource: [{
+          text: "Item 1",
+          cssClass: "myClass",                         // (Optional) Add custom CSS class to the item, added 2012 Q3 SP1
+          url: "http://www.telerik.com"                // (Optional) Link URL if navigation is needed
+        },
+        {
+          text: "<b>Item 2</b>",
+          encoded: false,                              // Allows the use of HTML for item text
+          content: "text"                              // Content within an item
+        },
+        {
+          text: "Item 3",
+          imageUrl: "http://www.telerik.com/test.jpg", // (Optional) Item image URL
+          items: [{                                    // Sub-item collection
+            text: "Sub Item 1"
+          },
+          {
+            text: "Sub Item 2"
+          }]
+        },
+        {
+          text: "Item 4",
+          spriteCssClass: "imageClass3"                // (Optional) Item image sprite CSS class
+        },
+        {
+          text: "Item 5"
+        }],
+        select: function (e) {                        // Item select event handler, optional
+          // e.sender - returns reference to the Kendo Menu widget
+          // e.target - returns the clicked element. Typically, the span.k-link element.
+          console.log(e);
+          // handle event
+        }
+      })
+    });
+  </script>
+</body>
+
+</html>

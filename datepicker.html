@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <input id="datepicker" />
+  <input id="monthpicker" />
+
+  <h4>Start date:</h4>
+  <input id="start" style="width: 100%;" value="10/10/2011" />
+
+  <h4 style="margin-top: 2em">End date:</h4>
+  <input id="end" style="width: 100%;" value="10/10/2012" />
+
+  <script>
+    $("#datepicker").kendoDatePicker();
+    $("#monthpicker").kendoDatePicker({
+      start: "year",
+      depth: "year",
+      format: "MMM yy"
+    });
+
+    var start = $("#start").kendoDateTimePicker({
+      change: function () {
+        var value = this.value();
+        console.log(value); //value is the selected date in the datepicker
+        end.min(this.value())
+      }
+    }).data('kendoDateTimePicker')
+    var end = $("#end").kendoDateTimePicker({
+      change: function () {
+        var value = this.value();
+        console.log(value); //value is the selected date in the datepicker
+        start.max(this.value())
+      }
+    }).data('kendoDateTimePicker')
+
+
+  </script>
+</body>
+
+</html>

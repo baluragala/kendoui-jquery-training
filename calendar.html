@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+  <style>
+    .special {
+      background-color: orange
+    }
+  </style>
+</head>
+
+<body>
+  <div id="calendar"></div>
+  <script>
+
+    /*
+      data -> date, weekNumber, value, dates
+    */
+
+    $("#calendar").kendoCalendar({
+      value: new Date(),
+      min: new Date(1950, 0, 1),
+      max: new Date(2050, 11, 31),
+      start: "month",
+      depth: "month",
+      weekNumber: true,
+      selectable: "multiple",
+      selectDates: [new Date(2018, 10, 12), new Date(2018, 10, 22)],
+      dates: [+new Date(2018, 9, 12), +new Date(2018, 9, 22), +new Date(2018, 10, 23)],
+      month: {
+        content: '# if( $.inArray(+data.date, data.dates) != -1 ) { # ' +
+          '<div class="special">#= data.value #</div>' +
+          '# } else { #' +
+          '<div>#= data.value #</div>' +
+          '# } #'
+        ,
+        weekNumber: '<b style="color:red">#= data.weekNumber #</b>'
+      }
+    });
+  </script>
+</body>
+
+</html>

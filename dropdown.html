@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+
+  <select id="size" placeholder="Select Size..">
+    <option value="S">Small</option>
+    <option value="M">Medium</option>
+    <option value="L">Large</option>
+  </select>
+
+  <input id="dd1" />
+
+  <input id="dd2" />
+
+  <script>
+    $(document).ready(function () {
+      $("#size").kendoDropDownList();
+
+      var dd1 = $("#dd1").kendoDropDownList({
+        dataTextField: "text",
+        dataValueField: "value",
+        dataSource: [
+          { text: "Small", value: "S" },
+          { text: "Medium", value: "M" },
+          { text: "Large", value: "L" }
+        ]
+      }).data("kendoDropDownList")
+
+
+      var dd2 = $("#dd2").kendoDropDownList({
+        dataTextField: "ProductName",
+        dataValueField: "ProductID",
+        filter: "contains",
+        autoWidth: true,
+        template: $("#scriptTemplate").html(),
+        dataSource: {
+          transport: {
+            read: {
+              dataType: "jsonp",
+              url: "https://demos.telerik.com/kendo-ui/service/Products"
+            },
+          }
+        }
+      }).data("kendoDropDownList")
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,2 +1,23 @@
 Expectations
 ------------
+
+Day 1 overiew
+-------------
+setup kendoui
+initialize widgets
+  - imperatively - widget constructor, jquery plugin
+  - declartively - data-*
+
+Reference - data(), 
+
+Template (hash template)
+-------- 
+#= #
+#: #
+#  #
+
+2 kinds - inline , external 
+
+widgets
+-------
+autocomplete -> configuration, fields, methods, events

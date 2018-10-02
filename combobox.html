@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <select id="size" placeholder="Select Size..">
+    <option value="S">Small</option>
+    <option value="M">Medium</option>
+    <option value="L">Large</option>
+  </select>
+
+  <input id="cb1" />
+  <input id="cb2" />
+
+  <script id="scriptTemplate" type="text/x-kendo-template">
+    ProductName: #:data.ProductName#, ProductID: #:data.ProductID#
+</script>
+
+  <script>
+    $(document).ready(function () {
+      $("#size").kendoComboBox()
+
+      var cb1 = $("#cb1").kendoComboBox({
+        dataTextField: "text",
+        dataValueField: "value",
+        dataSource: [
+          { text: "Small", value: "S" },
+          { text: "Medium", value: "M" },
+          { text: "Large", value: "L" }
+        ]
+      }).data("kendoComboBox")
+
+      console.log(cb1.dataItem(0));
+
+      var cb = $("#cb2").kendoComboBox({
+        dataTextField: "ProductName",
+        dataValueField: "ProductID",
+        filter: "contains",
+        autoWidth: true,
+        template: $("#scriptTemplate").html(),
+        dataSource: {
+          transport: {
+            read: {
+              dataType: "jsonp",
+              url: "https://demos.telerik.com/kendo-ui/service/Products"
+            },
+            group: { field: "Discontinued" }
+          }
+        }
+      })
+    }).data("kendoComboBox")
+
+
+  </script>
+</body>
+
+</html>
