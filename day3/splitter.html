@@ -14,10 +14,20 @@
 </head>
 
 <body>
+  <div id="splitter">
+    <div>Area 1</div>
+    <div>Area 2</div>
+  </div>
+
   <script>
-
-
-
+    $(document).ready(function () {
+      $("#splitter").kendoSplitter({
+        panes: [
+          { collapsible: true, min: "100px", max: "300px", contentUrl: "./c1.html" },
+          { collapsible: true, contentUrl: "./c2.html" }
+        ]
+      });
+    });
   </script>
 </body>
 

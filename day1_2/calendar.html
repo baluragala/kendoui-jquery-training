@@ -12,8 +12,12 @@
   <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
   <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
   <style>
-    .special {
+    .birth {
       background-color: orange
+    }
+
+    .hire {
+      background-color: blue
     }
   </style>
 </head>
@@ -26,6 +30,14 @@
       data -> date, weekNumber, value, dates
     */
 
+    var specialDates = [];
+    specialDates[+new Date(2018, 9, 12)] = "birthdate"
+    specialDates[+new Date(2018, 9, 16)] = "hiredate"
+    specialDates[+new Date(2018, 9, 18)] = "birthdate"
+    specialDates[+new Date(2018, 9, 22)] = "hiredate"
+    specialDates[+new Date(2018, 9, 28)] = "hiredate"
+
+
     $("#calendar").kendoCalendar({
       value: new Date(),
       min: new Date(1950, 0, 1),
@@ -35,10 +47,12 @@
       weekNumber: true,
       selectable: "multiple",
       selectDates: [new Date(2018, 10, 12), new Date(2018, 10, 22)],
-      dates: [+new Date(2018, 9, 12), +new Date(2018, 9, 22), +new Date(2018, 10, 23)],
+      dates: specialDates,
       month: {
-        content: '# if( $.inArray(+data.date, data.dates) != -1 ) { # ' +
-          '<div class="special">#= data.value #</div>' +
+        content: '# if( data.dates[+data.date]==="birthdate"  ) { # ' +
+          '<div class="birth">#= data.value #</div>' +
+          '# } else if(data.dates[+data.date]==="hiredate" ) { #' +
+          '<div class="hire">#= data.value #</div>' +
           '# } else { #' +
           '<div>#= data.value #</div>' +
           '# } #'

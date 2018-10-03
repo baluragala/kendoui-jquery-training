@@ -14,11 +14,19 @@
 </head>
 
 <body>
-  <script>
-
-
-
-  </script>
+  <div id="tabstrip">
+    <ul>
+      <li>First tab</li>
+      <li>Second tab</li>
+    </ul>
+    <div>First tab content</div>
+    <div>Second tab content</div>
+    <script>
+      $(document).ready(function () {
+        $("#tabstrip").kendoTabStrip();
+      });
+    </script>
+  </div>
 </body>
 
 </html>

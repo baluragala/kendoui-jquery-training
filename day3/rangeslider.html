@@ -14,10 +14,20 @@
 </head>
 
 <body>
+  <div id="rangeSlider">
+    <input />
+    <input />
+  </div>
   <script>
-
-
-
+    $(document).ready(function () {
+      $("#rangeSlider").kendoRangeSlider({
+        min: 10,
+        max: 50,
+        orientation: "vertical",
+        smallStep: 1,
+        largeStep: 10
+      });
+    });
   </script>
 </body>
 
