@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <ul id="treeView">
+    <li>Item 1
+      <ul>
+        <li>Item 1.1</li>
+        <li>Item 1.2</li>
+      </ul>
+    </li>
+    <li>Item 2</li>
+  </ul>
+
+  <hr />
+  <div id="treeView1"></div>
+  <hr />
+  <div id="treeView2"></div>
+
+  <script>
+    $(document).ready(function () {
+      $("#treeView").kendoTreeView();
+
+      $("#treeView1").kendoTreeView({
+        dataSource: [
+          {
+            text: "Item 1",
+            items: [
+              { text: "Item 1.1" },
+              { text: "Item 1.2" }
+            ]
+          },
+          { text: "Item 2" }
+        ]
+      });
+
+      $("#treeView2").kendoTreeView({
+        dataTextField: "FullName",
+        dataSource: {
+          transport: {
+            read: {
+              url: "https://demos.telerik.com/kendo-ui/service/Employees",
+              dataType: "jsonp"
+            }
+          },
+          schema: {
+            model: {
+              id: "EmployeeId",
+              hasChildren: "HasEmployees"
+            }
+          }
+        }
+      });
+
+    });
+
+  </script>
+
+</body>
+
+</html>
