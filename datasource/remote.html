@@ -18,27 +18,37 @@
 
     var remoteDataSource = new kendo.data.DataSource({
       transport: {
-        read: function (options) {
-          $.ajax(
-            {
-              url: "https://randomuser.me/api/",
-              dataType: "json",
-              data: {
-                results: 10,
-                page: 1
-              },
-              success: function (result) {
-                options.success(result)
-              },
-              error: function (err) {
-                options.error(err)
-              }
-            })
-        }
+        read:
+        {
+          url: "https://randomuser.me/api/",
+          dataType: "json"
+        },
+        parameterMap: function (data, type) {
+          console.log(data);
+          data.results = data.take;
+          delete data.take;
+          if (data.filter && data.filter.filters[0].operator == "eq") {
+            data[data.filter.filters[0].field] = data.filter.filters[0].value
+          }
+          delete data.filter;
+          return data;
+        },
+      },
+      pageSize: 10,
+      serverPaging: true,
+      serverFiltering: true,
+      filter: {
+        logic:
+          "and",
+        filters:
+          [{ field: "nat", operator: "equals", value: "gb" }]
       },
       schema: {
         data: function (response) {
           return response.results
+        },
+        total: function (response) {
+          return response.info.results
         }
       }
     })
@@ -48,6 +58,11 @@
         console.log(rec.toJSON());
       }
     });
+
+    //remoteDataSource.page(2);
+
+    remoteDataSource.query({ page: 2, take: 20 })
+
 
   </script>
 </body>
