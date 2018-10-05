@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <div id="chart1" style="width: 400px; height: 600px"></div>
+  <div id="chart2"></div>
+  <div id="chart3"></div>
+  <script>
+    $(document).ready(function () {
+      $("#chart1").kendoChart({
+        title: {
+          text: 'Kendo Chart Example'
+        },
+        series: [
+          { name: 'Example Series1', data: [200, 450, 300, 125] },
+          { name: 'Example Series2', data: [100, 250, 400, 25] }
+        ],
+        categoryAxis: {
+          categories: [2000, 2001, 2002, 2003]
+        }
+
+      });
+
+      var internetUsers = [
+        {
+          "country": "United States",
+          "year": "2005",
+          "value": 67.96
+        },
+        {
+          "country": "United States",
+          "year": "2006",
+          "value": 68.93
+        }
+      ];
+
+      $("#chart2").kendoChart({
+        dataSource: {
+          data: internetUsers
+        },
+        series: [{
+          field: "value",
+          name: "United States"
+        }],
+        categoryAxis: {
+          field: "year",
+          labels: {
+            position: "start",
+            background: "green",
+            color: "white",
+            rotation: 90
+          }
+        }
+      });
+
+
+
+      $("#chart3").kendoChart({
+        title: {
+          text: "Average temperature and humidity"
+        },
+        legend: {
+          position: "bottom"
+        },
+        series: [{
+          name: "Temperature",
+          data: [20, 25, 32],
+          axis: "temperature"
+        }, {
+          name: "Humidity",
+          data: [45, 50, 80],
+          axis: "humidity"
+        }],
+        categoryAxis: {
+          categories: ["Aug", "Sep", "Oct"]
+        },
+        valueAxis: [{
+          name: "temperature",
+          labels: {
+            format: "{0}C"
+          }
+        }, {
+          name: "humidity",
+          labels: {
+            format: "{0}%"
+          }
+        }]
+      });
+
+    })
+  </script>
+</body>
+
+</html>
