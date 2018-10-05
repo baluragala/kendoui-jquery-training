@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <div id="chart1"></div>
+  <div id="chart2"></div>
+  <script>
+    $(document).ready(function () {
+
+      $("#chart1").kendoChart({
+        series: [{
+          type: "scatter",
+          name: "Pentium D 915",
+          data: [[120, 340], [180, 100]]
+        }],
+        xAxis: {
+          max: 200
+        }, yAxis: {
+          max: 400
+        }
+      })
+
+
+
+      $("#chart2").kendoChart({
+        title: {
+          text: "Dyno run results"
+        },
+        legend: {
+          position: "bottom"
+        },
+        seriesDefaults: {
+          type: "scatterLine"
+        },
+        series: [{
+          name: "Power",
+          data: [[1000, 10], [1500, 19], [2000, 30]]
+        }, {
+          name: "Torque",
+          data: [[1000, 50], [1500, 65], [2000, 80]],
+          yAxis: "torque"
+        }],
+        xAxis: {
+          title: "Engine rpm",
+          axisCrossingValue: [0, 2500]
+        },
+        yAxis: [{
+          labels: {
+            format: "{0} bhp"
+          }
+        }, {
+          name: "torque",
+          labels: {
+            format: "{0} Nm"
+          }
+        }]
+      });
+
+
+    })
+  </script>
+</body>
+
+</html>
