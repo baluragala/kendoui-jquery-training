@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <select id="multiselect1" multiple="multiple">
+    <option>Item 1</option>
+    <option>Item 2</option>
+    <option>Item 3</option>
+  </select>
+
+  <select id="multiselect2"></select>
+
+  <select id="multiselect3" multiple></select>
+
+  <select id="multiselect4" multiple></select>
+
+  <script id="itemTemplate" type="text/x-kendo-template">
+    ContactName: #:data.ContactName#, CustomerID: #:data.CustomerID#
+</script>
+
+  <script>
+    $(document).ready(function () {
+      $("#multiselect1").kendoMultiSelect();
+
+      $("#multiselect2").kendoMultiSelect({
+        dataTextField: "text",
+        dataValueField: "value",
+        dataSource: [
+          { text: "Item1", value: "1" },
+          { text: "Item2", value: "2" }
+        ]
+      });
+
+      $("#multiselect3").kendoMultiSelect({
+        dataTextField: "ProductName",
+        dataValueField: "ProductID",
+        dataSource: {
+          transport: {
+            read: {
+              dataType: "jsonp",
+              url: "https://demos.telerik.com/kendo-ui/service/Products"
+            }
+          }
+        }
+      });
+
+      $("#multiselect4").kendoMultiSelect({
+
+        autoClose: false,
+
+        itemTemplate: $("#itemTemplate").html(),
+        dataTextField: "ContactName",
+        dataValueField: "CustomerID",
+        dataSource: {
+          transport: {
+            read: {
+              dataType: "jsonp",
+              url: "https://demos.telerik.com/kendo-ui/service/Customers"
+            }
+          }
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>
