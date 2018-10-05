@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+  <div style="background:yellow;height: 1500px;">
+    <button id="open">Open</button>
+  </div>
+  <div id="window">
+  </div>
+  <script>
+    $(document).ready(function () {
+      $("#open").on('click', function () {
+        $.ajax({
+          url: "http://127.0.0.1:5500/day4/effects-listview.html", success: function (data) {
+            console.log(data);
+            win.content(data);
+            win.open();
+          }
+        })
+
+      })
+      var win = $("#window").kendoWindow({
+        actions: ["Pin", "Refresh", "Close", "Minimize", "Maximize"],
+        content: "../day4/effectstransfer.html",
+        height: "700px",
+        width: "700px",
+        modal: true,
+        position: {
+          top: 200,
+          left: 200
+        },
+        resizable: false,
+        draggable: false,
+        scrollable: true,
+        title: "Customer details",
+        visible: false
+      }).data("kendoWindow")
+      win.center();
+    });
+
+  </script>
+</body>
+
+</html>
