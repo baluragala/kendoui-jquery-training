@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Welcome to Kendo UI</title>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.common.min.css" />
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.3.911/styles/kendo.metro.min.css" />
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
+</head>
+
+<body>
+
+  <button id="open">Look up product details</button>
+  <div class="picker-wrapper">
+    <h4>Choose Color for low stock</h4>
+    <div id="lowstock" class="picker"></div>
+  </div>
+
+  <div id="window">
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      var lowStockColor;
+
+
+      $("#open").on('click', function () {
+        $.ajax({
+          url: "http://127.0.0.1:5500/datasource/gridedit.html", success: function (data) {
+            win.content(data);
+            win.open();
+          }
+        })
+
+      })
+
+      var win = $("#window").kendoWindow({
+        actions: ["Pin", "Refresh", "Close", "Minimize", "Maximize"],
+        content: "../datasource/gridedit.html",
+        height: "600px",
+        width: "1200px",
+        modal: true,
+
+        resizable: false,
+        draggable: false,
+        scrollable: true,
+        title: "Customer details",
+        visible: false
+      }).data("kendoWindow")
+      win.center();
+
+      $("#lowstock").kendoFlatColorPicker({
+        preview: false,
+        value: "#000",
+        change: select
+      });
+
+
+      function select(e) {
+        lowStockColor = e.value;
+        console.log(lowStockColor);
+      }
+
+    });
+
+  </script>
+
+</body>
+
+</html>

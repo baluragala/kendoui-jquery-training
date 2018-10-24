@@ -17,7 +17,14 @@
   <script src="https://kendo.cdn.telerik.com/2018.3.911/js/jquery.min.js"></script>
   <script src="https://kendo.cdn.telerik.com/2018.3.911/js/kendo.all.min.js"></script>
 
-
+  <style>
+    .good-stock{
+    background-color: none;
+  }
+  .low-stock {
+    background-color: orange;
+  }
+  </style>
 </head>
 
 <body>
@@ -72,7 +79,7 @@
           dataSource: dataSource,
           pageable: true,
           height: 550,
-          toolbar: ["create", "pdf"],
+          rowTemplate: kendo.template($("#rowTemplate").html()),
           columns: [
             "ProductName",
             { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "120px" },
@@ -88,7 +95,50 @@
         $('<input class="k-checkbox" id="' + guid + '" type="checkbox" name="Discontinued" data-type="boolean" data-bind="checked:Discontinued">').appendTo(container);
         $('<label class="k-checkbox-label" for="' + guid + '">​</label>').appendTo(container);
       }
+
+      function categoryDropDownEditor(container, options) {
+        $('<input required name="' + options.field + '"/>')
+          .appendTo(container)
+          .kendoDropDownList({
+            autoBind: false,
+            dataTextField: "CategoryName",
+            dataValueField: "CategoryID",
+            dataSource: {
+              type: "odata",
+              transport: {
+                read: "https://demos.telerik.com/kendo-ui/service/Northwind.svc/Categories"
+              }
+            }
+          });
+      }
+
+
     </script>
+    <script id="rowTemplate" type="text/x-kendo-tmpl">
+      <tr data-uid="#: uid #" style="#= UnitsInStock < 10 ?  'background-color:red' : 'good-stock' #">
+        <td class="details">
+          #=ProductName#
+        </td>
+       
+        <td class="country">
+          #: UnitPrice #
+        </td>
+        <td class="employeeID">
+          #: UnitsInStock #
+        </td>
+         <td class="employeeID">
+          #: Discontinued #
+        </td>
+        <td>
+          <a class="k-button k-button-icontext k-grid-edit" href="\#">
+            <span class="k-icon k-edit"></span>Edit
+        </a>
+          <a class="k-button k-button-icontext k-grid-delete" href="\#">
+            <span class="k-icon k-delete"></span>Delete
+        </a>
+        </td>
+        </tr>
+      </script>
   </div>
 
 
