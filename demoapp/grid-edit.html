@@ -52,7 +52,7 @@
           toolbar: ["create"],
           columns: [
             { field: "ProductName", title: "Product Name" },
-            { field: "Category", title: "Category", width: "180px", editor: categoryDropDownEditor, template: "#=Category.CategoryName#" },
+            { field: "Category", title: "Category", width: "180px", editor: categoryDropDownEditor, template: "#=Category.CategoryID#" },
             { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "130px", editor: priceEditor },
             { command: "destroy", title: " ", width: "150px" }],
           editable: true
